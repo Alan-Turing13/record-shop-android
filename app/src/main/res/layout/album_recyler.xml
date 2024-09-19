@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="record"
+            type="com.northcoders.recordshop.model.Album"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="20dp"
+            app:cardCornerRadius="20dp"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="#483D3C"
+            app:cardMaxElevation="12dp"
+            android:minHeight="200dp"
+            app:cardPreventCornerOverlap="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@{record.imageUrl}" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/actor"
+                android:hint="Sign O The Times and many more"
+                android:paddingLeft="25dp"
+                android:paddingRight="15dp"
+                android:text="@{record.name}"
+                android:textAlignment="viewStart"
+                android:textColor="#A7CF5D"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="75dp"
+                android:fontFamily="@font/actor"
+                android:hint="Prince"
+                android:paddingLeft="25dp"
+                android:text="@{record.artist}"
+                android:textColor="#F9EBC4"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/actor"
+                android:hint="1989"
+                android:paddingLeft="25dp"
+                android:text="@{record.releaseYear}"
+                android:textColor="#F9EBC4"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="155dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/actor"
+                android:hint="FUNK"
+                android:paddingLeft="25dp"
+                android:text="@{record.genre}"
+                android:textColor="#F9EBC4"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
