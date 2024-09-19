@@ -14,6 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:paddingTop="10dp"
+        android:background="#A7CF5D"
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
@@ -62,6 +63,7 @@
                 android:fontFamily="@font/actor"
                 android:hint="Prince"
                 android:paddingLeft="25dp"
+                android:paddingRight="15dp"
                 android:text="@{record.artist}"
                 android:textColor="#F9EBC4"
                 android:textSize="18sp" />
@@ -76,6 +78,7 @@
                 android:fontFamily="@font/actor"
                 android:hint="1989"
                 android:paddingLeft="25dp"
+                android:paddingRight="15dp"
                 android:text="@{record.releaseYear}"
                 android:textColor="#F9EBC4"
                 android:textSize="18sp"
@@ -91,6 +94,7 @@
                 android:fontFamily="@font/actor"
                 android:hint="FUNK"
                 android:paddingLeft="25dp"
+                android:paddingRight="15dp"
                 android:text="@{record.genre}"
                 android:textColor="#F9EBC4"
                 android:textSize="15sp"

@@ -2,6 +2,7 @@ package com.northcoders.recordshop.model;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
 
 public class Album extends BaseObservable {
     private long id;
@@ -57,8 +58,9 @@ public class Album extends BaseObservable {
         return String.valueOf(releaseYear);
     }
 
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = Integer.parseInt(releaseYear);
+        notifyPropertyChanged(BR.releaseYear);
     }
 
     @Bindable
@@ -66,8 +68,14 @@ public class Album extends BaseObservable {
         return String.valueOf(genre);
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenre(String genre) {
+        try {
+            this.genre = Genre.valueOf(genre);
+            notifyPropertyChanged(BR.genre);
+        } catch (IllegalArgumentException e){
+            this.genre = Genre.valueOf("POP");
+            notifyPropertyChanged(BR.genre);
+        }
     }
 
     @Bindable
@@ -77,6 +85,7 @@ public class Album extends BaseObservable {
 
     public void setArtist(String artist) {
         this.artist = artist;
+        notifyPropertyChanged(BR.artist);
     }
 
     @Bindable
@@ -84,7 +93,9 @@ public class Album extends BaseObservable {
         return imageUrl;
     }
 
+    // TODO: add error handling if not a valid URL
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        notifyPropertyChanged(BR.imageUrl);
     }
 }
