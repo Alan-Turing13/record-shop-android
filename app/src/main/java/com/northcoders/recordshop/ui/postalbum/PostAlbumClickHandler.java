@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.ui.main.MainActivity;
 import com.northcoders.recordshop.viewmodel.MainActivityViewModel;
 
 public class PostAlbumClickHandler {
@@ -25,13 +26,13 @@ public class PostAlbumClickHandler {
         postAlbumValidator = new PostAlbumValidator();
         if (postAlbumValidator.isValid(context, album)) {
             mainActivityViewModel.postAlbum(album);
-            Intent intent = new Intent(context, MainActivityViewModel.class);
+            Intent intent = new Intent(context, MainActivity.class);
             context.startActivity(intent);
         }
     }
 
     public void exitView(View view){
-        Intent intent = new Intent(context, MainActivityViewModel.class);
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 }

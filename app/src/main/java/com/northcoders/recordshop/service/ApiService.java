@@ -17,13 +17,13 @@ public interface ApiService {
     @GET("records/albums/response")
     Call<List<Album>> getAllAlbums();
 
-    @POST("records/")
+    @POST("records")
     Call<Album> postAlbum(@Body Album album);
 
-    @PUT("{id}")
+    @PUT("records/{id}")
     Call<Album> updateAlbum(@Path("id") long id, @Body Album album);
 
-    @DELETE("{id}")
+    @DELETE("records/{id}")
     Call<String> deleteAlbum(@Path("id") long id);
 
 }

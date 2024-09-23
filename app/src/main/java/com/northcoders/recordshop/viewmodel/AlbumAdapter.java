@@ -16,6 +16,7 @@ import com.northcoders.recordshop.databinding.AlbumRecylerBinding;
 import com.northcoders.recordshop.model.Album;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
@@ -74,5 +75,10 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
     @Override
     public int getItemCount() {
         return albumList.size();
+    }
+
+    public void setFilteredAlbums(ArrayList<Album> filteredAlbums){
+        this.albumList = filteredAlbums;
+        notifyDataSetChanged();
     }
 }

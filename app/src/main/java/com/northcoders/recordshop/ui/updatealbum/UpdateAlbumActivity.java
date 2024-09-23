@@ -32,10 +32,11 @@ public class UpdateAlbumActivity extends AppCompatActivity {
             album = getIntent().getParcelableExtra(ALBUM_KEY, Album.class);
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update_album);
+
         binding.setAlbum(album);
 
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
+        viewModel.init(this.getApplication());
         handler = new UpdateAlbumClickHandler(album, this, viewModel, album.getId());
         binding.setClickHandler(handler);
     };

@@ -28,7 +28,7 @@ public class PostAlbumActivity extends AppCompatActivity {
         activityPostAlbumBinding = DataBindingUtil.setContentView(this, R.layout.activity_post_album);
         Log.i("Post Album Activity", "Getting album from the data bind.");
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-
+        mainActivityViewModel.init(this.getApplication());
         postAlbumClickHandler = new PostAlbumClickHandler(album, this, mainActivityViewModel);
         activityPostAlbumBinding.setClickHandler(postAlbumClickHandler);
 
