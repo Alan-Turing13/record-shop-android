@@ -1,6 +1,7 @@
-package com.northcoders.recordshop;
+package com.northcoders.recordshop.ui.main;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -14,37 +15,41 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.northcoders.recordshop.R;
 import com.northcoders.recordshop.databinding.ActivityMainBinding;
 import com.northcoders.recordshop.model.Album;
 import com.northcoders.recordshop.repository.AlbumRepository;
+import com.northcoders.recordshop.ui.updatealbum.UpdateAlbumActivity;
 import com.northcoders.recordshop.viewmodel.AlbumAdapter;
 import com.northcoders.recordshop.viewmodel.MainActivityViewModel;
+import com.northcoders.recordshop.viewmodel.RecyclerViewInterface;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     RecyclerView recyclerView;
     List<Album> albumList;
     AlbumAdapter albumAdapter;
     MainActivityViewModel mainActivityViewModel;
     ActivityMainBinding activityMainBinding;
+    MainActivityClickHandler mainActivityClickHandler;
+    private static final String ALBUM_KEY = "album";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recycler), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        mainActivityViewModel.init(this.getApplication());
+        mainActivityClickHandler = new MainActivityClickHandler(this);
+        activityMainBinding.setPost(mainActivityClickHandler);
         Application app = new Application();
         AlbumRepository albumRepository = new AlbumRepository(app);
         albumRepository.getMutableLiveData();
+
         getAllAlbums();
     }
 
@@ -60,11 +65,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayAlbums() {
         recyclerView = activityMainBinding.recycler;
-        albumAdapter = new AlbumAdapter(albumList, this);
+        albumAdapter = new AlbumAdapter(albumList, this, this);
         recyclerView.setAdapter(albumAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         albumAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onAlbumClick(int position) {
+        Intent intent = new Intent(MainActivity.this, UpdateAlbumActivity.class);
+        intent.putExtra(ALBUM_KEY, albumList.get(position));
+        startActivity(intent);
+    }
+
 }

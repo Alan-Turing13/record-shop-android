@@ -2,6 +2,7 @@ package com.northcoders.recordshop.viewmodel;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -20,19 +21,32 @@ import java.util.List;
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private List<Album> albumList;
     private Context context;
+    private final RecyclerViewInterface recyclerViewInterface;
 
     public static class AlbumViewHolder extends RecyclerView.ViewHolder{
         private AlbumRecylerBinding albumRecylerBinding;
 
-        public AlbumViewHolder(AlbumRecylerBinding albumRecylerBinding){
+        public AlbumViewHolder(AlbumRecylerBinding albumRecylerBinding, RecyclerViewInterface recyclerViewInterface){
             super(albumRecylerBinding.getRoot());
             this.albumRecylerBinding = albumRecylerBinding;
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(recyclerViewInterface != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onAlbumClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
-    public AlbumAdapter(List<Album> albumList, Context context){
+    public AlbumAdapter(List<Album> albumList, Context context, RecyclerViewInterface recyclerViewInterface){
         this.albumList = albumList;
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @BindingAdapter("android:src")
@@ -48,7 +62,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
         AlbumRecylerBinding albumRecylerBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 R.layout.album_recyler, parent, false);
-        return new AlbumViewHolder(albumRecylerBinding);
+        return new AlbumViewHolder(albumRecylerBinding, recyclerViewInterface);
     }
 
     @Override

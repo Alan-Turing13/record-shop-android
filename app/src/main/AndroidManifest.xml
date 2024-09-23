@@ -16,10 +16,16 @@
         android:theme="@style/Theme.RecordShop"
         tools:targetApi="31">
         <activity
+            android:name=".ui.updatealbum.UpdateAlbumActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.postalbum.PostAlbumActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".viewmodel.MainActivityViewModel"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

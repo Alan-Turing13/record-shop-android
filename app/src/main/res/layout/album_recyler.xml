@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:paddingTop="10dp"
-        android:background="#A7CF5D"
+        android:background="@color/green"
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
@@ -23,7 +23,7 @@
             app:cardElevation="20dp"
             app:cardCornerRadius="20dp"
             android:layout_margin="10dp"
-            app:cardBackgroundColor="#483D3C"
+            app:cardBackgroundColor="@color/grey"
             app:cardMaxElevation="12dp"
             android:minHeight="200dp"
             app:cardPreventCornerOverlap="true"
@@ -51,7 +51,7 @@
                 android:paddingRight="15dp"
                 android:text="@{record.name}"
                 android:textAlignment="viewStart"
-                android:textColor="#A7CF5D"
+                android:textColor="@color/green"
                 android:textSize="20sp" />
 
             <TextView
@@ -65,7 +65,7 @@
                 android:paddingLeft="25dp"
                 android:paddingRight="15dp"
                 android:text="@{record.artist}"
-                android:textColor="#F9EBC4"
+                android:textColor="@color/cream"
                 android:textSize="18sp" />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:paddingLeft="25dp"
                 android:paddingRight="15dp"
                 android:text="@{record.releaseYear}"
-                android:textColor="#F9EBC4"
+                android:textColor="@color/cream"
                 android:textSize="18sp"
                 />
 
@@ -96,7 +96,7 @@
                 android:paddingLeft="25dp"
                 android:paddingRight="15dp"
                 android:text="@{record.genre}"
-                android:textColor="#F9EBC4"
+                android:textColor="@color/cream"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
