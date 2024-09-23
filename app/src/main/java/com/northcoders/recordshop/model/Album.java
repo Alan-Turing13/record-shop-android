@@ -8,7 +8,6 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
-import androidx.databinding.library.baseAdapters.BR;
 
 public class Album extends BaseObservable implements Parcelable {
     private long id;

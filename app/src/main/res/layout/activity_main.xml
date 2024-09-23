@@ -22,13 +22,13 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_margin="15dp"
         android:background="@drawable/search_view_bg"
         android:queryHint="Search..."
         android:backgroundTint="@color/cream"
-        app:layout_constraintBottom_toTopOf="@+id/recycler"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
