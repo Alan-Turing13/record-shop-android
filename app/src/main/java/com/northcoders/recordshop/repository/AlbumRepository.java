@@ -7,7 +7,10 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 
 import com.northcoders.recordshop.model.Album;
+import com.northcoders.recordshop.model.AlbumDetails;
+import com.northcoders.recordshop.model.Genre;
 import com.northcoders.recordshop.service.ApiService;
+import com.northcoders.recordshop.service.DTOBuilder;
 import com.northcoders.recordshop.service.RetrofitInstance;
 
 import java.util.List;
@@ -46,17 +49,18 @@ public class AlbumRepository {
     public void postAlbum(Album album){
         ApiService apiService = RetrofitInstance.getService();
         Log.i("Repo", "****** created Api");
-        Call<Album> call = apiService.postAlbum(album);
+        AlbumDetails albumDetails = DTOBuilder.buildDTO(album);
+        Call<AlbumDetails> call = apiService.postAlbum(albumDetails);
         Log.i("Repo", album.getName());
         Log.i("Repo", "****** created Call");
-        call.enqueue(new Callback<Album>() {
+        call.enqueue(new Callback<AlbumDetails>() {
             @Override
-            public void onResponse(Call<Album> call, Response<Album> response) {
+            public void onResponse(Call<AlbumDetails> call, Response<AlbumDetails> response) {
                 Toast.makeText(app, "Album posted successfully", Toast.LENGTH_SHORT).show();
                 Log.i("POST req", "Posted album " + album.toString());
             }
             @Override
-            public void onFailure(Call<Album> call, Throwable t) {
+            public void onFailure(Call<AlbumDetails> call, Throwable t) {
                 Toast.makeText(app, "There was a problem posting that album", Toast.LENGTH_SHORT).show();
                 Log.e("POST req", t.getMessage());
             }
@@ -65,14 +69,15 @@ public class AlbumRepository {
 
     public void updateAlbum(Long id, Album album){
         ApiService apiService = RetrofitInstance.getService();
-        Call<Album> call = apiService.updateAlbum(id, album);
-        call.enqueue(new Callback<Album>() {
+        AlbumDetails albumDetails = DTOBuilder.buildDTO(album);
+        Call<AlbumDetails> call = apiService.updateAlbum(id, albumDetails);
+        call.enqueue(new Callback<AlbumDetails>() {
             @Override
-            public void onResponse(Call<Album> call, Response<Album> response) {
+            public void onResponse(Call<AlbumDetails> call, Response<AlbumDetails> response) {
                 Toast.makeText(app, "Album updated successfully", Toast.LENGTH_SHORT).show();
             }
             @Override
-            public void onFailure(Call<Album> call, Throwable t) {
+            public void onFailure(Call<AlbumDetails> call, Throwable t) {
                 Toast.makeText(app, "There was a problem updating that album", Toast.LENGTH_SHORT).show();
                 Log.e("PUT req", t.getMessage());
             }

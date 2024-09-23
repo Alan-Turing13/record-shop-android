@@ -8,32 +8,22 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
-import androidx.databinding.library.baseAdapters.BR;
 
-public class Album extends BaseObservable implements Parcelable {
-    private long id;
+public class AlbumDetails extends BaseObservable implements Parcelable {
     private String name;
     private int releaseYear;
     private Genre genre;
     private String artist;
     private String imageUrl;
 
-    public Album(long id, String name, int releaseYear, Genre genre, String artist) {
-        this.id = id;
+    public AlbumDetails(String name, int releaseYear, Genre genre, String artist) {
         this.name = name;
         this.releaseYear = releaseYear;
         this.genre = genre;
         this.artist = artist;
     }
 
-    public Album(String name, int releaseYear, Genre genre, String artist) {
-        this.name = name;
-        this.releaseYear = releaseYear;
-        this.genre = genre;
-        this.artist = artist;
-    }
-
-    public Album(String name, int releaseYear, Genre genre, String artist, String imageUrl) {
+    public AlbumDetails(String name, int releaseYear, Genre genre, String artist, String imageUrl) {
         this.name = name;
         this.releaseYear = releaseYear;
         this.genre = genre;
@@ -41,8 +31,7 @@ public class Album extends BaseObservable implements Parcelable {
         this.imageUrl = imageUrl;
     }
 
-    protected Album(Parcel in) {
-        id = in.readLong();
+    protected AlbumDetails(Parcel in) {
         name = in.readString();
         releaseYear = in.readInt();
         genre = Genre.valueOf(in.readString());
@@ -50,12 +39,12 @@ public class Album extends BaseObservable implements Parcelable {
         imageUrl = in.readString();
     }
 
-    public Album() {
+    public AlbumDetails() {
         this.releaseYear = 0;
         this.genre = POP;
     }
 
-    public static final Creator<Album> CREATOR = new Creator<Album>() {
+    public static final Parcelable.Creator<Album> CREATOR = new Parcelable.Creator<Album>() {
         @Override
         public Album createFromParcel(Parcel in) {
             return new Album(in);
@@ -66,15 +55,6 @@ public class Album extends BaseObservable implements Parcelable {
             return new Album[size];
         }
     };
-
-    @Bindable
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     @Bindable
     public String getName() {
@@ -143,7 +123,6 @@ public class Album extends BaseObservable implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeLong(id);
         dest.writeString(name);
         dest.writeInt(releaseYear);
         dest.writeString(String.valueOf(genre));
@@ -153,6 +132,6 @@ public class Album extends BaseObservable implements Parcelable {
 
     @Override
     public String toString() {
-        return "Album{id=" + id + "{name=" + name + ", releaseYear=" + releaseYear + ", genre=" + genre + ", artist=" + artist + ", imageUrl=" + imageUrl + "}";
+        return "Album{name=" + name + ", releaseYear=" + releaseYear + ", genre=" + genre + ", artist=" + artist + ", imageUrl=" + imageUrl + "}";
     }
 }
