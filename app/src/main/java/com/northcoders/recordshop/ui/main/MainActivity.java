@@ -81,8 +81,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         filteredAlbums = new ArrayList<>();
         try {
             for (Album album : albumList) {
-                if (album.getName().toLowerCase().contains(newText.toLowerCase())) {
-                    filteredAlbums.add(album);
+                for (String query : newText.split(" ")){
+                    if (!filteredAlbums.contains(album) && (album.getName().toLowerCase().contains(query.toLowerCase()) ||
+                        album.getArtist().toLowerCase().contains(query.toLowerCase()) ||
+                        album.getReleaseYear().contains(query) ||
+                        album.getGenre().contains(query.toUpperCase()))){
+                        filteredAlbums.add(album);
+                    }
                 }
             }
         } catch (NullPointerException e){
